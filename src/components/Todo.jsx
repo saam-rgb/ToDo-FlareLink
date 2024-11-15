@@ -7,14 +7,15 @@ import { addTodo } from "../redux/actions";
 
 const Todo = () => {
   const [newTodoText, setNewTodoText] = useState("");
-  const [priority, setPriority] = useState("no");
+  const [priority, setPriority] = useState("No");
   const dispatch = useDispatch();
 
+  //* add todo
   const handleAddTodoClick = () => {
     if (newTodoText.trim() !== "") {
       dispatch(addTodo(newTodoText.trim(), priority));
       setNewTodoText("");
-      setPriority("no");
+      setPriority("No");
     }
   };
 

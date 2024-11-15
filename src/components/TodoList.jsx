@@ -12,6 +12,7 @@ const TodoList = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
+  //* filter & sort
   const filteredTodos = todos
     .filter((todo) =>
       todo.text.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,6 +30,7 @@ const TodoList = () => {
       }
       return 0;
     });
+  //* search
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };

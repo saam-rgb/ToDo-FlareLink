@@ -10,6 +10,7 @@ const TodoItems = ({ todo, index }) => {
     <li className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 py-2 gap-4">
       <div className="flex items-center">
         <Toaster richColors closeButton />
+        {/* toast */}
         <span className="mr-4 text-gray-500">{index + 1}.</span>
         <span
           className={`mr-4 ${
