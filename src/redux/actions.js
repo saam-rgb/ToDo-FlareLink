@@ -1,23 +1,16 @@
 import {
   ADD_TODO,
-  TOGGLE_TODO,
   REMOVE_TODO,
   MARK_COMPLETED,
   MARK_INCOMPLETE,
-  FILTER_TODOS,
-  MARK_ALL_COMPLETED,
+  SET_FILTER,
   UPDATE_SEARCH_TERM,
   SORT_TODOS,
 } from "./actionTypes";
 
-export const addTodo = (text) => ({
+export const addTodo = (text, priority = "no") => ({
   type: ADD_TODO,
-  payload: { text },
-});
-
-export const toggleTodo = (id) => ({
-  type: TOGGLE_TODO,
-  payload: { id },
+  payload: { text, priority },
 });
 
 export const removeTodo = (id) => ({
@@ -35,17 +28,15 @@ export const markIncomplete = (id) => ({
   payload: { id },
 });
 
-export const filterTodos = (filter) => ({
-  type: FILTER_TODOS,
-  payload: { filter },
-});
-export const sortTodos = (sort) => ({
+export const setFilter = (filter) => {
+  return {
+    type: SET_FILTER,
+    payload: filter,
+  };
+};
+export const sortTodos = (sortType) => ({
   type: SORT_TODOS,
-  payload: { sort },
-});
-
-export const markAllCompleted = () => ({
-  type: MARK_ALL_COMPLETED,
+  payload: { sortType },
 });
 
 export const updateSearchTerm = (searchTerm) => ({

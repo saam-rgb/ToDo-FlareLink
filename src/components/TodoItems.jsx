@@ -29,24 +29,20 @@ const TodoItems = ({ todo, index }) => {
         </span>
       </div>
       <div className="space-x-3 ml-8">
-        <button
-          className="mr-2 text-sm bg-blue-500 text-white sm:px-2 px-1 py-1 rounded"
-          onClick={() => dispatch(toggleTodo(index))}>
-          {todo.completed ? <FaToggleOff /> : <FaToggleOn />}
-        </button>
+        <span className="font-bold">{todo.priority}</span>
+
         <button
           className="mr-2 text-sm bg-red-500 text-white sm:px-2 px-1 py-1 rounded"
           onClick={() => dispatch(removeTodo(index))}>
           <FaTrash />
         </button>
-        {!todo.completed && (
+        {!todo.completed ? (
           <button
             className="text-sm bg-green-500 text-white sm:px-2 px-1 py-1 rounded"
             onClick={() => dispatch(markCompleted(index))}>
             <FaCheck />
           </button>
-        )}
-        {todo.completed && (
+        ) : (
           <button
             className="text-sm bg-yellow-500 text-white sm:px-2 px-1 py-1 rounded"
             onClick={() => dispatch(markIncomplete(index))}>

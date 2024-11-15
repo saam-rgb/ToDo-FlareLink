@@ -1,13 +1,11 @@
 import {
   ADD_TODO,
-  TOGGLE_TODO,
   REMOVE_TODO,
   MARK_COMPLETED,
   MARK_INCOMPLETE,
-  FILTER_TODOS,
-  MARK_ALL_COMPLETED,
   UPDATE_SEARCH_TERM,
   SORT_TODOS,
+  SET_FILTER,
 } from "./actionTypes";
 
 const initialState = { todos: [], filter: "ALL", searchTerm: "", sort: "NONE" };
@@ -16,25 +14,15 @@ const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
+        ...state,
         todos: [
           ...state.todos,
-          { text: action.payload.text, completed: false, important: false },
+          {
+            text: action.payload.text,
+            completed: false,
+            priority: action.payload.priority,
+          },
         ],
-        filter: state.filter,
-        sort: state.sort,
-        searchTerm: state.searchTerm,
-      };
-
-    case TOGGLE_TODO:
-      return {
-        todos: state.todos.map((todo, index) =>
-          index === action.payload.id
-            ? { ...todo, completed: !todo.completed }
-            : todo
-        ),
-        filter: state.filter,
-        sort: state.sort,
-        searchTerm: state.searchTerm,
       };
 
     case REMOVE_TODO:
@@ -65,33 +53,34 @@ const todoReducer = (state = initialState, action) => {
         searchTerm: state.searchTerm,
       };
 
-    case FILTER_TODOS:
+    case SET_FILTER:
       return {
-        todos: state.todos,
-        filter: action.payload.filter,
-        sort: state.sort,
-        searchTerm: state.searchTerm,
+        ...state,
+        filter: action.payload, // Update the filter, not the todos
       };
-    case SORT_TODOS:
-      return {
-        todos: state.todos,
-        filter: state.filter,
-        sort: action.payload.sort,
-        searchTerm: state.searchTerm,
-      };
+    case SORT_TODOS: {
+      const sortType = action.payload.sortType;
+      let sortedTodos = [...state.todos];
+
+      if (sortType === "COMPLETED") {
+        sortedTodos = sortedTodos.filter((todo) => todo.completed);
+      } else if (sortType === "INCOMPLETE") {
+        sortedTodos = sortedTodos.filter((todo) => !todo.completed);
+      } else if (sortType === "PRIORITY") {
+        const priorityOrder = { HIGH: 1, MEDIUM: 2, LOW: 3, NONE: 4 };
+        sortedTodos.sort(
+          (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
+        );
+      }
+
+      return { ...state, todos: sortedTodos };
+    }
 
     case UPDATE_SEARCH_TERM:
       return {
         todos: state.todos,
         filter: state.filter,
         searchTerm: action.payload.searchTerm,
-      };
-
-    case MARK_ALL_COMPLETED:
-      return {
-        todos: state.todos.map((todo) => ({ ...todo, completed: true })),
-        filter: state.filter,
-        searchTerm: state.searchTerm,
       };
 
     default:
