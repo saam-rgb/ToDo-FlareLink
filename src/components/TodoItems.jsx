@@ -35,7 +35,7 @@ const TodoItems = ({ todo, index }) => {
             className="text-sm bg-green-500 text-white sm:px-2 px-1 py-1 rounded"
             onClick={() => {
               dispatch(markCompleted(index));
-              toast.success("Task added sucess");
+              toast.success("Task completed");
             }}>
             <FaCheck />
           </button>

@@ -25,7 +25,7 @@ const TodoList = () => {
     })
     .sort((a, b) => {
       if (sortByPriority) {
-        const priorityOrder = { high: 3, med: 2, low: 1, no: 0 };
+        const priorityOrder = { High: 3, Med: 2, Low: 1, No: 0 };
         return priorityOrder[b.priority] - priorityOrder[a.priority];
       }
       return 0;
