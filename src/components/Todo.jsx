@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import TodoList from "./TodoList";
 import { BsPlus } from "react-icons/bs";
 import { addTodo } from "../redux/actions";
+import { toast, Toaster } from "sonner";
 
 const Todo = () => {
   const [newTodoText, setNewTodoText] = useState("");
@@ -12,10 +13,14 @@ const Todo = () => {
 
   //* add todo
   const handleAddTodoClick = () => {
+    if (newTodoText.trim() === "") {
+      toast.error("Please enter a Task");
+    }
     if (newTodoText.trim() !== "") {
       dispatch(addTodo(newTodoText.trim(), priority));
       setNewTodoText("");
       setPriority("No");
+      toast.success("Task added successfully");
     }
   };
 
@@ -24,6 +29,7 @@ const Todo = () => {
       <h2 className="mt-3 mb-6 font-primary text-2xl font-semibold text-center uppercase">
         TODO APP
       </h2>
+      <Toaster richColors closeButton />
       <div className="flex items-center sm:mb-4 mb-2 space-x-3 flex-wrap justify-center">
         <input
           id="addTodoInput"
