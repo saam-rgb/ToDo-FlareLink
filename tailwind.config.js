@@ -10,9 +10,9 @@ export default {
         accent: "#FFC107",
         primaryHover: "#ff0000",
       },
-      // fontFamily: {
-      //   primary: ["Helveti"],
-      // },
+      fontFamily: {
+        primary: ["Poppins", "serif"],
+      },
     },
   },
   plugins: [],

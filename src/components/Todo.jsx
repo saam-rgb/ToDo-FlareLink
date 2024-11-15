@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Meteors from "@/components/magicui/meteors";
 import { useDispatch } from "react-redux";
 import TodoList from "./TodoList";
 import { BsPlus } from "react-icons/bs";
@@ -19,7 +20,8 @@ const Todo = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4 bg-gray-100 rounded-md">
-      <h2 className="mt-3 mb-6 text-2xl font-bold text-center uppercase">
+      <Meteors number={30} />
+      <h2 className="mt-3 mb-6 font-primary text-2xl font-semibold text-center uppercase">
         TODO APP
       </h2>
       <div className="flex items-center sm:mb-4 mb-2 space-x-3 flex-wrap justify-center">
@@ -36,10 +38,10 @@ const Todo = () => {
           className="mr-4 px-2 py-2 rounded border-b-2 md:w-28 sm:w-48 w-1/2 border-gray-300 focus:outline-none focus:border-blue-500 "
           value={priority}
           onChange={(e) => setPriority(e.target.value)}>
-          <option value="no">No Priority</option>
-          <option value="high">High</option>
-          <option value="med">Medium</option>
-          <option value="low">Low</option>
+          <option value="No">No Priority</option>
+          <option value="High">High</option>
+          <option value="Med">Medium</option>
+          <option value="Low">Low</option>
         </select>
 
         <button

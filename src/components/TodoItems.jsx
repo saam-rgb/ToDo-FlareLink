@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { removeTodo, markCompleted, markIncomplete } from "../redux/actions";
 import { FaTrash, FaCheck, FaTimes } from "react-icons/fa";
+import { toast, Toaster } from "sonner";
 
 const TodoItems = ({ todo, index }) => {
   const dispatch = useDispatch();
@@ -8,6 +9,7 @@ const TodoItems = ({ todo, index }) => {
   return (
     <li className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 py-2 gap-4">
       <div className="flex items-center">
+        <Toaster richColors closeButton />
         <span className="mr-4 text-gray-500">{index + 1}.</span>
         <span
           className={`mr-4 ${
@@ -21,19 +23,28 @@ const TodoItems = ({ todo, index }) => {
 
         <button
           className="mr-2 text-sm bg-red-500 text-white sm:px-2 px-1 py-1 rounded"
-          onClick={() => dispatch(removeTodo(index))}>
+          onClick={() => {
+            dispatch(removeTodo(index));
+            toast.error("Task deleted");
+          }}>
           <FaTrash />
         </button>
         {!todo.completed ? (
           <button
             className="text-sm bg-green-500 text-white sm:px-2 px-1 py-1 rounded"
-            onClick={() => dispatch(markCompleted(index))}>
+            onClick={() => {
+              dispatch(markCompleted(index));
+              toast.success("Task added sucess");
+            }}>
             <FaCheck />
           </button>
         ) : (
           <button
             className="text-sm bg-yellow-500 text-white sm:px-2 px-1 py-1 rounded"
-            onClick={() => dispatch(markIncomplete(index))}>
+            onClick={() => {
+              dispatch(markIncomplete(index));
+              toast.error("Task moved to incomplete");
+            }}>
             <FaTimes />
           </button>
         )}
