@@ -35,33 +35,41 @@ const TodoList = () => {
   const handleFilterChange = (newFilter) => {
     dispatch(setFilter(newFilter));
   };
-  console.log(searchTerm);
+
   return (
     <div>
-      <div className="flex space-x-4 items-center">
-        <button
-          className="text-sm px-2 py-1 bg-gray-500 text-white rounded"
-          onClick={() => handleFilterChange("ALL")}>
-          All
-        </button>
-        <button onClick={() => handleFilterChange("COMPLETED")}>
-          Completed
-        </button>
-        <button onClick={() => handleFilterChange("INCOMPLETE")}>
-          Incomplete
-        </button>
-        <button onClick={() => setSortByPriority(!sortByPriority)}>
-          {sortByPriority ? "Show Timely Order" : "Sort by Priority"}
-        </button>
-        <div className="flex items-center ">
+      <div className="flex justify-between  pb-4  border-b-2 flex-wrap sm:flex-row flex-col-reverse">
+        <div className="flex space-x-3 items-center justify-center flex-wrap ">
+          <button
+            className="text-sm px-2 py-1 sm:mb-0 mb-2 bg-gray-500 text-white rounded"
+            onClick={() => handleFilterChange("ALL")}>
+            All
+          </button>
+          <button
+            className="text-sm px-2 py-1 sm:mb-0 mb-2 bg-gray-500 text-white rounded"
+            onClick={() => handleFilterChange("COMPLETED")}>
+            Completed
+          </button>
+          <button
+            className="text-sm px-2 py-1 sm:mb-0 mb-2 bg-gray-500 text-white rounded"
+            onClick={() => handleFilterChange("INCOMPLETE")}>
+            Incomplete
+          </button>
+          <button
+            className="text-sm px-2 py-1 sm:mb-0 mb-2 bg-gray-500 text-white rounded"
+            onClick={() => setSortByPriority(!sortByPriority)}>
+            {sortByPriority ? "Show Timely Order" : "Sort by Priority"}
+          </button>
+        </div>
+        <div className="flex items-center gap-3 sm:mb-0 mb-4">
           <input
-            className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+            className="flex-grow rounded p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
             type="text"
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Search todos..."
           />
-          <button className="ml-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+          <button className=" p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
             <BsSearch size={20} />
           </button>
         </div>
