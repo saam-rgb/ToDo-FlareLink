@@ -27,7 +27,7 @@ const Todo = () => {
   return (
     <div className="max-w-4xl mx-auto p-4 bg-gray-100 rounded-md">
       <h2 className="mt-3 mb-6 font-primary text-2xl font-semibold text-center uppercase">
-        TODO APP
+        Task Hub
       </h2>
       <Toaster richColors closeButton />
       <div className="flex items-center sm:mb-4 mb-2 space-x-3 flex-wrap justify-center">
