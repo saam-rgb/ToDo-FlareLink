@@ -1,15 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import TodoItems from "./TodoItems";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { setFilter } from "../redux/actions";
+import { BsSearch } from "react-icons/bs";
 
 const TodoList = () => {
   const [sortByPriority, setSortByPriority] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
   const filteredTodos = todos
+    .filter((todo) =>
+      todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     .filter((todo) => {
       if (filter === "ALL") return true;
       if (filter === "COMPLETED" && todo.completed) return true;
@@ -21,12 +27,15 @@ const TodoList = () => {
         const priorityOrder = { high: 3, med: 2, low: 1, no: 0 };
         return priorityOrder[b.priority] - priorityOrder[a.priority];
       }
-      return 0; // No sorting
+      return 0;
     });
-
-  const handleFilterChange = (newFilter) => {
-    dispatch(setFilter(newFilter)); // Update only the filter state
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
+  const handleFilterChange = (newFilter) => {
+    dispatch(setFilter(newFilter));
+  };
+  console.log(searchTerm);
   return (
     <div>
       <div className="flex space-x-4 items-center">
@@ -44,6 +53,18 @@ const TodoList = () => {
         <button onClick={() => setSortByPriority(!sortByPriority)}>
           {sortByPriority ? "Show Timely Order" : "Sort by Priority"}
         </button>
+        <div className="flex items-center ">
+          <input
+            className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Search todos..."
+          />
+          <button className="ml-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+            <BsSearch size={20} />
+          </button>
+        </div>
       </div>
       <ul>
         {filteredTodos.length > 0 ? (

@@ -1,28 +1,20 @@
-// Todo.js
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import TodoList from "./TodoList";
-import FilterButton from "./FilterButton";
-import { BsSearch, BsPlus } from "react-icons/bs";
-import { addTodo, updateSearchTerm } from "../redux/actions";
+import { BsPlus } from "react-icons/bs";
+import { addTodo } from "../redux/actions";
 
 const Todo = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [newTodoText, setNewTodoText] = useState("");
-  const [priority, setPriority] = useState("no"); // Default priority
+  const [priority, setPriority] = useState("no");
   const dispatch = useDispatch();
 
   const handleAddTodoClick = () => {
     if (newTodoText.trim() !== "") {
-      dispatch(addTodo(newTodoText.trim(), priority)); // Pass priority to action
+      dispatch(addTodo(newTodoText.trim(), priority));
       setNewTodoText("");
-      setPriority("no"); // Reset priority
+      setPriority("no");
     }
-  };
-
-  const handleSearchChange = (value) => {
-    setSearchTerm(value);
-    dispatch(updateSearchTerm(value));
   };
 
   return (
@@ -55,18 +47,6 @@ const Todo = () => {
           onClick={handleAddTodoClick}>
           <BsPlus size={20} />
         </button>
-        <div className="flex items-center ">
-          <input
-            className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
-            type="text"
-            placeholder="Search Todos"
-            value={searchTerm}
-            onChange={(e) => handleSearchChange(e.target.value)}
-          />
-          <button className="ml-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-            <BsSearch size={20} />
-          </button>
-        </div>
       </div>
 
       <TodoList />
