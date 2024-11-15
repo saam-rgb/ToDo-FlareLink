@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Meteors from "@/components/magicui/meteors";
+
 import { useDispatch } from "react-redux";
 import TodoList from "./TodoList";
 import { BsPlus } from "react-icons/bs";
@@ -20,7 +20,6 @@ const Todo = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4 bg-gray-100 rounded-md">
-      <Meteors number={30} />
       <h2 className="mt-3 mb-6 font-primary text-2xl font-semibold text-center uppercase">
         TODO APP
       </h2>
