@@ -1,14 +1,13 @@
 import {
   ADD_TODO,
-  FILTER_TODO,
-  MARK_ALL_COMPLETE,
-  MARK_COMPLETE,
-  MARK_INCOMPLETE,
-  REMOVE_TODO,
-  SEARCH_TEXT,
-  SET_PRIORITY,
-  SORT_TODO,
   TOGGLE_TODO,
+  REMOVE_TODO,
+  MARK_COMPLETED,
+  MARK_INCOMPLETE,
+  FILTER_TODOS,
+  MARK_ALL_COMPLETED,
+  UPDATE_SEARCH_TERM,
+  SORT_TODOS,
 } from "./actionTypes";
 
 export const addTodo = (text) => ({
@@ -25,30 +24,31 @@ export const removeTodo = (id) => ({
   type: REMOVE_TODO,
   payload: { id },
 });
-export const markComplete = (id) => ({
-  type: MARK_COMPLETE,
+
+export const markCompleted = (id) => ({
+  type: MARK_COMPLETED,
   payload: { id },
 });
+
 export const markIncomplete = (id) => ({
   type: MARK_INCOMPLETE,
   payload: { id },
 });
-export const markAllComplete = () => ({
-  type: MARK_ALL_COMPLETE,
-});
-export const filterTodo = (filter) => ({
-  type: FILTER_TODO,
+
+export const filterTodos = (filter) => ({
+  type: FILTER_TODOS,
   payload: { filter },
 });
-export const searchText = (searchText) => ({
-  type: SEARCH_TEXT,
-  payload: { searchText },
-});
-export const sortTodo = (sort) => ({
-  type: SORT_TODO,
+export const sortTodos = (sort) => ({
+  type: SORT_TODOS,
   payload: { sort },
 });
-export const setPriority = (id) => ({
-  type: SET_PRIORITY,
-  payload: { id },
+
+export const markAllCompleted = () => ({
+  type: MARK_ALL_COMPLETED,
+});
+
+export const updateSearchTerm = (searchTerm) => ({
+  type: UPDATE_SEARCH_TERM,
+  payload: { searchTerm },
 });

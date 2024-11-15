@@ -1,10 +1,9 @@
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
-export const MARK_COMPLETE = "MARK_COMPLETE";
+export const MARK_COMPLETED = "MARK_COMPLETED";
 export const MARK_INCOMPLETE = "MARK_INCOMPLETE";
-export const FILTER_TODO = "FILTER_TODO";
-export const MARK_ALL_COMPLETE = "MARK_ALL_COMPLETE";
-export const SEARCH_TEXT = "SEARCH_TEXT";
-export const SORT_TODO = "SORT_TODO";
-export const SET_PRIORITY = "SET_PRIORITY";
+export const FILTER_TODOS = "FILTER_TODOS";
+export const MARK_ALL_COMPLETED = "MARK_ALL_COMPLETED";
+export const UPDATE_SEARCH_TERM = "UPDATE_SEARCH_TERM";
+export const SORT_TODOS = "SORT_TODOS";

@@ -1,7 +1,12 @@
 import "./App.css";
+import Todo from "./components/Todo";
 
 function App() {
-  return <>saam is a good boy</>;
+  return (
+    <div>
+      <Todo />
+    </div>
+  );
 }
 
 export default App;
